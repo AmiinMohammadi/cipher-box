@@ -1,18 +1,26 @@
-const { invoke } = window.__TAURI__.core;
+//const { invoke } = window.__TAURI__.core;
 
-let greetInputEl;
-let greetMsgEl;
+const encTabBtn = document.querySelector("#encrypt_tab");
+const decTabBtn = document.querySelector("#decrypt_tab");
+const encFrm = document.querySelector("#encrypt_frm");
+const decFrm = document.querySelector("#decrypt_frm");
+encTabBtn.addEventListener('click', () => {
+    decFrm.style.zIndex = 1;
+    encFrm.style.zIndex = 2;
+});
+decTabBtn.addEventListener('click', () => {
+    decFrm.style.zIndex = 2;
+    encFrm.style.zIndex = 1;
+});
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-}
+/*tab_btn.addEventListener('click', () => {
 
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+    decrypt_frm.classList.toggle("decrypt_frm_rotate");
+    encrypt_frm.classList.toggle("encrypt_frm_rotate");
+
+});
+*/
+document.addEventListener('DOMContentLoaded', () => {
+    tabBtn.classList.toggle("stable_btn");
+
 });
