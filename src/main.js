@@ -1,26 +1,37 @@
 //const { invoke } = window.__TAURI__.core;
 
-const encTabBtn = document.querySelector("#encrypt_tab");
-const decTabBtn = document.querySelector("#decrypt_tab");
-const encFrm = document.querySelector("#encrypt_frm");
-const decFrm = document.querySelector("#decrypt_frm");
-encTabBtn.addEventListener('click', () => {
-    decFrm.style.zIndex = 1;
-    encFrm.style.zIndex = 2;
+const genEncBtn = document.querySelector("#generate_encrypt_btn");
+
+const copyEncBtn = document.querySelector("#copy_output_btn");
+
+genEncBtn.addEventListener('mousedown', () => {
+    genEncBtn.classList.add("button_press");
+
 });
-decTabBtn.addEventListener('click', () => {
+genEncBtn.addEventListener('mouseup', () => {
+    genEncBtn.classList.remove("button_press");
+
+});
+copyEncBtn.addEventListener('mousedown', () => {
+    copyEncBtn.classList.add("button_press");
+
+});
+copyEncBtn.addEventListener('mouseup', () => {
+    copyEncBtn.classList.remove("button_press");
+
+});
+
+/*
+    decTabBtn.addEventListener('click', () => {
     decFrm.style.zIndex = 2;
     encFrm.style.zIndex = 1;
-});
-
-/*tab_btn.addEventListener('click', () => {
-
-    decrypt_frm.classList.toggle("decrypt_frm_rotate");
-    encrypt_frm.classList.toggle("encrypt_frm_rotate");
+    decTabBtn.classList.add("pressed");
+    encTabBtn.classList.add("unpressed");
+    decTabBtn.classList.remove("unpressed");
 
 });
-*/
+
 document.addEventListener('DOMContentLoaded', () => {
-    tabBtn.classList.toggle("stable_btn");
 
-});
+   
+});*/

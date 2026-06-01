@@ -10,45 +10,42 @@
 </head>
 
 <body>
+    <form id="encrypt_frm">
 
-    <div id="tabs">
-        <button id="encrypt_tab">Encryption</button>
-        <button id="decrypt_tab">Decryption</button>
-    </div>
+        <div class="form-group">
+            <label>Encryption</label>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="Give your plain-text" id="encrypt_input" rows="8"></textarea>
+        </div>
 
-    <main class="container">
+        <div class="form-group">
+            <input placeholder="The secret key..." id="encrypt_key" type="password">
+        </div>
 
-        <form id="decrypt_frm" class="crypto_form">
+        <div class="action-group">
+            <button  id="generate_encrypt_btn" type="button">
+                <img src="assets/generate.svg" alt="">
+            </button>
+            <button id="copy_output_btn" type="button">
+                <img src="assets/copy.svg" alt="">
+            </button>
+        </div>
 
-            <div class="form-group">
-                <label>Decrypt your cheaper text</label>
-            </div>
-            <div class="form-group">
-                <textarea id="decrypt_input" rows="4"></textarea>
-            </div>
+        <div class="form-group">
+            <textarea readonly placeholder="Press the generate button to see result..." id="encrypt_output"
+                rows="8"></textarea>
+        </div>
 
-            <div class="form-group">
-                <input id="decrypt_key" type="password">
-            </div>
-
-            <div class="action-group">
-                <button id="decrypt_generate" type="button">Generate</button>
-                <button id="decrypt_output_copy" type="button">Copy</button>
-            </div>
-
-            <div class="form-group">
-                <textarea id="decrypt_output" rows="4"></textarea>
-            </div>
-
-        </form>
-
+    </form>
+    <!--
         <form id="encrypt_frm" class="crypto_form">
             <div class="form-group">
                 <label>Encrypt your plain text</label>
             </div>
 
             <div class="form-group">
-                <textarea id="encrypt_input" rows="4"></textarea>
+                <textarea id="encrypt_input" rows="8"></textarea>
             </div>
 
             <div class="form-group">
@@ -61,11 +58,11 @@
             </div>
 
             <div class="form-group">
-                <textarea id="encrypt_output" rows="4"></textarea>
+                <textarea id="encrypt_output" rows="8"></textarea>
             </div>
 
-        </form>
-    </main>
+        </form> ->
+
 </body>
 
 </html>
