@@ -10,16 +10,14 @@
 
 @font-face {
     font-family: "Inconsolatazi";
-    src:
-        local("Inconsolatazi"),
+    src: local("Inconsolatazi"),
         url("fonts/Inconsolatazi.otf") format("opentype");
 
 }
 
 @font-face {
     font-family: "InconsolataziBold";
-    src:
-        local("InconsolataziBold"),
+    src: local("InconsolataziBold"),
         url("fonts/InconsolataziBold.otf") format("opentype");
 
 }
@@ -31,7 +29,7 @@ body {
 
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: var(--main-color);
@@ -40,17 +38,18 @@ body {
 
 form {
     display: flex;
+    top: 100px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
     position: absolute;
     background-color: inherit;
-    width: 400px;
-    height: 800px;
-    font-family: cnsolas;
+    width: 450px;
+    height: 600px;
+    transition-property: left, position, translate;
+    transition-duration: 1s;
 }
-
-.form-group:first-child {}
 
 .form-group:first-child label {
 
@@ -84,7 +83,7 @@ form {
     border-radius: 10px;
     background-color: inherit;
     box-shadow: 5px 5px 5px 0px rgb(208, 208, 208), -5px -5px 5px 0px rgb(255, 255, 255);
-    transition-property: background-color,translate;
+    transition-property: translate;
     transition-duration: 0.3s;
     cursor: pointer;
     outline: none;
@@ -92,7 +91,7 @@ form {
 
 .button_press {
 
-    translate: 0px 5px ;
+    translate: 0px 5px;
 }
 
 .action-group button img {
@@ -100,10 +99,44 @@ form {
     height: 70%;
 }
 
+#select_algo {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#select_algo label {
+    font-size: 18px;
+}
+
+#select_algo>label {
+    font-size: 20px;
+}
+
+#select_algo div {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#select_algo div input {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+#select_algo label:first-child {
+    align-self: center;
+}
+
+#select_algo input {}
 
 form textarea,
 form input {
-    width: 100%;
+    width: 90%;
     resize: none;
     border: none;
     background-color: inherit;
