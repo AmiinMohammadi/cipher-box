@@ -7,31 +7,42 @@ const textIn = document.querySelector("#text_input");
 const textOut = document.querySelector("#text_output");
 const key = document.querySelector("#key");
 const errMassage = document.querySelector("#error_msg");
+const errBox = document.querySelector(".form-group:last-child");
+const hintIcon = document.querySelector("#img_hint");
 
+function showMassage(srcImage, textColor, text, time = 2500) {
+    hintIcon.setAttribute("src", srcImage);
+    errMassage.style.color = textColor;
+    errMassage.innerText = text;
+    errBox.style.opacity = 1;
+    errBox.style.translate = "0 -15px 0 ";
+    setTimeout(() => {
+        errBox.style.translate = "";
+        errBox.style.opacity = 0;
+    }, time);
+}
 
 copyBtn.addEventListener('click', async () => {
-    errMassage.innerHTML = "";
-    const textToCopy = textOut.value;
-    if (!textToCopy) {
 
-        errMassage.innerHTML = "result is empty!!";
-    } else {
-        try {
-            await navigator.clipboard.writeText(textToCopy);
-        } catch (e) {
-            alert("Error: ${e}")
-        }
+
+    const textToCopy = textOut.value;
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        showMassage("assets/paste.png", "black", "Copied!");
+    } catch (e) {
+        showMassage("assets/mark.png", "derkred", `Copy operation failed.\nerror: ${e}`, 5000);
     }
+
 })
 
 decBtn.addEventListener('click', async () => {
 
-    errMassage.innerHTML = "";
+
     const textValue = textIn.value.trim();
     const keyValue = key.value.trim();
 
     if (!textValue || !keyValue) {
-        errMassage.innerHTML = "the fields are empty!";
+        showMassage("assets/mark.png", "derkred", `The fields are empty!`);
     } else {
         try {
             const result = await invoke("decrypt_func", {
@@ -40,8 +51,11 @@ decBtn.addEventListener('click', async () => {
             });
 
             textOut.value = result;
+            showMassage("assets/check.png", "green", "Successful decryption");
+            copyBtn.disabled = false;
+
         } catch (e) {
-            alert(`Error:${e}`);
+            showMassage("assets/mark.png", "derkred", `Decryption failed.\nerror: ${e}`, 5000);
         }
 
     }
@@ -49,12 +63,12 @@ decBtn.addEventListener('click', async () => {
 });
 encBtn.addEventListener("click", async () => {
 
-    errMassage.innerHTML = "";
+
     const textValue = textIn.value.trim();
     const keyValue = key.value.trim();
 
     if (!textValue || !keyValue) {
-        errMassage.innerHTML = "the fields are empty!";
+        showMassage("assets/mark.png", "derkred", `The fields are empty!`);
     } else {
         try {
             const result = await invoke("encrypt_func", {
@@ -63,55 +77,36 @@ encBtn.addEventListener("click", async () => {
             });
 
             textOut.value = result;
-        } catch (e) {
-            alert(`Error:${e}`);
-        }
+            showMassage("assets/check.png", "green", "Successful encryption");
+            copyBtn.disabled = false;
 
+            copyBtn.style.cursor = "pointer";
+        } catch (e) {
+            showMassage("assets/mark.png", "derkred", `Encryption failed.\nerror: ${e}`, 5000);
+        }
     }
 })
-
-
-/*encBtn.addEventListener('click', async () => {
-
-    const textValue = textIn.value.trim();
-    const keyValue = key.value.trim();
-
-
-    const result = await invoke("encryptFunc", {
-        text: textValue, key: keyValue
-    });
-
-    textOut.value = result;
-
+encBtn.addEventListener("mousedown", async () => {
+    encBtn.style.boxShadow = "var(--down-side)";
+    encBtn.style.scale = "0.95";
 });
-
-function pressStyle(btn, cssClass) {
-    btn.classList.add(cssClass);
-}
-
-encBtn.addEventListener('mousedown', async () => {
-    encBtn.classList.add("button_press");
+encBtn.addEventListener("mouseup", async () => {
+    encBtn.style.boxShadow = "var(--up-side)";
+    encBtn.style.scale = "1";
 });
-encBtn.addEventListener('mouseup', async () => {
-    encBtn.classList.remove("button_press");
-
+decBtn.addEventListener("mousedown", async () => {
+    decBtn.style.boxShadow = "var(--down-side)";
+    decBtn.style.scale = "0.95";
 });
-copyBtn.addEventListener('mousedown', async () => {
-    copyBtn.classList.add("button_press");
+decBtn.addEventListener("mouseup", async () => {
+    decBtn.style.boxShadow = "var(--up-side)";
+    decBtn.style.scale = "1";
 });
-copyBtn.addEventListener('mouseup', async () => {
-    copyBtn.classList.remove("button_press");
+copyBtn.addEventListener("mousedown", async () => {
+    copyBtn.style.boxShadow = "var(--down-side)";
+    copyBtn.style.scale = "0.95";
 });
-decBtn.addEventListener('mousedown', async () => {
-    decBtn.classList.add("button_press");
+copyBtn.addEventListener("mouseup", async () => {
+    copyBtn.style.boxShadow = "var(--up-side)";
+    copyBtn.style.scale = "1";
 });
-decBtn.addEventListener('mouseup', async () => {
-    decBtn.classList.remove("button_press");
-});
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-   
-});*/

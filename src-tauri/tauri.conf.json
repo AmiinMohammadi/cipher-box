@@ -10,7 +10,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "crypto-app",
+        "title": "CipherBox",
         "width": 800,
         "height": 600
       }

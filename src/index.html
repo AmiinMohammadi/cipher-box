@@ -13,7 +13,7 @@
     <form id="crypto_frm">
 
         <div class="form-group">
-            <label>Encryption-Decryption</label>
+            <label>Crypto Tool</label>
         </div>
         <div class="form-group">
             <textarea required placeholder="Give your plain or chaper text..." id="text_input" rows="4"></textarea>
@@ -22,16 +22,16 @@
         <div class="form-group">
             <input required placeholder="The secret key..." id="key" type="password">
         </div>
-        <div class="form-group" id="select_algo">
-            <label>Wich Algoritm?</label>
+        <div class="form-group radio-group" id="select_algo">
+            <label>Which algorithm?</label>
             <div>
-                <input type="radio" checked name="encrypt_algo" value="Aes" id="Aes">
+                <input type="radio" class="sul-radio" checked name="encrypt_algo" value="Aes" id="Aes">
                 <label for="Aes">AES</label>
 
             </div>
             <div>
-                <input type="radio" name="encrypt_algo" value="Chacha" id="Chacha">
-                <label for="Chacha">Chacha</label>
+                <input type="radio" class="sul-radio" name="encrypt_algo" value="Chacha" id="Chacha">
+                <label for="Chacha">CHACHA</label>
             </div>
 
         </div>
@@ -42,18 +42,21 @@
 
         <div class="action-group">
             <button id="encrypt_btn" type="button">
-                <img src="assets/lockpng.png" alt="">
+                <img src="assets/lock.png" alt="">
             </button>
 
             <button id="decrypt_btn" type="button">
 
-                <img src="assets/unlockpng.png" alt="">
+                <img src="assets/key.png" alt="">
             </button>
-            <button id="copy_btn" type="button">
-                <img src="assets/copy.svg" alt="">
+            <button id="copy_btn" disabled type="button">
+                <img src="assets/copy2.png" alt="">
             </button>
         </div>
+
         <div class="form-group">
+
+            <img id="img_hint" alt="">
             <p id="error_msg"></p>
         </div>
 
