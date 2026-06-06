@@ -1,8 +1,8 @@
 import init, {decrypt_func, encrypt_func,Algorithms} from "./pkg/crypto_app_lib.js";
-
+// Determine the execution environment: true if in Browser (WASM), false if in Desktop (Tauri)
 const isWeb = !window.__TAURI_INTERNALS__;
 
-// DOM Element Selectors
+// --- DOM Element Selectors ---
 const encBtn = document.querySelector("#encrypt_btn");
 const decBtn = document.querySelector("#decrypt_btn");
 const copyBtn = document.querySelector("#copy_btn");
@@ -15,17 +15,21 @@ const hintIcon = document.querySelector("#img_hint");
 
 // Global tracker for UI toast timeout to prevent race conditions during rapid clicks
 let messageTimeout = null;
-// Initialize WASM once on startup if running in a web environment
+// Initialize WebAssembly environment if running in a browser
 if (isWeb) {
     init().catch(err => showMessage({text: `WASM Initialization failed: ${err}`}));
 }
-
+/**
+ * Handles the encryption process.
+ * Conditionally routes the request to WASM (Web) or Tauri IPC (Desktop).
+ */
 async function handleEncrypt() {
     const textValue = textIn.value.trim();
     const keyValue = keyInput.value;
-    const selectedAlgo = getSelectedAlgorithm();
+    const selectedAlgo = getSelectedAlgorithm(); // "Aes" or "Chacha"
     if (!validateInputs(textValue, keyValue)) return;
     if (isWeb) {
+        // WebAssembly execution flow
         try {
             const algo = (selectedAlgo === "Chacha" ? Algorithms.Chacha : Algorithms.Aes);
 
@@ -43,6 +47,7 @@ async function handleEncrypt() {
             });
         }
     } else {
+        // Tauri Desktop execution flow
         // Retrieve the safe invoke method from Tauri v2 core bridge
         const {invoke} = window.__TAURI__.core;
         try {
@@ -66,13 +71,17 @@ async function handleEncrypt() {
         }
     }
 }
-
+/**
+ * Handles the decryption process.
+ * Conditionally routes the request to WASM (Web) or Tauri IPC (Desktop).
+ */
 async function handleDecrypt() {
     const textValue = textIn.value.trim();
     const keyValue = keyInput.value;
-    const selectedAlgo = getSelectedAlgorithm();
+    const selectedAlgo = getSelectedAlgorithm(); // "Aes" or "Chacha"
     if (!validateInputs(textValue, keyValue)) return;
     if (isWeb) {
+        // WebAssembly execution flow
         try {
             const algo = (selectedAlgo === "Chacha" ? Algorithms.Chacha : Algorithms.Aes);
             textOut.value = decrypt_func(textValue, keyValue, algo);
@@ -88,6 +97,7 @@ async function handleDecrypt() {
             });
         }
     } else {
+        // Tauri Desktop execution flow
         // Retrieve the safe invoke method from Tauri v2 core bridge
         const {invoke} = window.__TAURI__.core;
         try {

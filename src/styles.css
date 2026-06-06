@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. FONT DECLARATIONS
+   ========================================================================== */
 @font-face {
     font-family: "Inconsolatazi";
     src: local("Inconsolatazi"), url("fonts/Inconsolatazi.otf") format("opentype");
@@ -8,6 +11,9 @@
     src: local("InconsolataziBold"), url("fonts/InconsolataziBold.otf") format("opentype");
 }
 
+/* ==========================================================================
+   2. GLOBAL RESET & DESIGN SYSTEM VARIABLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -21,14 +27,18 @@
     --text-muted: #8c8c8c;
     --text-dark: #626262;
 
+    /* Neumorphism (Soft UI) Shadow Configurations */
     --up-side: 5px 5px 10px #b5b5b5, -5px -5px 16px #ffffff;
     --down-side: inset 4px 6px 6px #bdbcbc, inset -5px -5px 8px #ffffff;
     --back-color-up-side: linear-gradient(-20deg, #e8e8e8, #ffffff);
-
+    /* Inner shadows for pressed/focused input states */
     --inner-back-color-down-side: linear-gradient(#f3f3f3, #f3f3f3);
     --press-side: 0px 1px 8px #757575, -5px -5px 5px #ffffff;
 }
 
+/* ==========================================================================
+   3. GLOBAL STRUCTURAL LAYOUT
+   ========================================================================== */
 body {
     background-color: var(--main-color);
     font-family: 'Inconsolatazi', monospace;
@@ -50,11 +60,13 @@ form {
     background-color: var(--main-color);
     display: flex;
     flex-direction: column;
+    /* Uniform structural scaling between nested groups */
     gap: 20px;
     padding: 10px;
 
 }
 
+/* Lock text selection on general structural layouts to ensure native UI feel */
 body,
 button,
 label,
@@ -64,6 +76,9 @@ h1 {
     user-select: none;
 }
 
+/* ==========================================================================
+   4. COMPONENT TYPOGRAPHY & FIELDS
+   ========================================================================== */
 .form-header h1 {
     font-family: "InconsolataziBold";
     font-size: 30px;
@@ -91,6 +106,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* Base Neumorphic Textarea/Input Styling */
 form textarea,
 form input[type="password"] {
     width: 100%;
@@ -112,6 +128,7 @@ form input[type="password"] {
     border-radius: 10px;
 }
 
+/* Smooth transition when clicking/focusing input areas */
 form textarea[id="text_input"]:focus-visible,
 form input[type="password"]:focus-visible {
     background: var(--inner-back-color-down-side);
@@ -119,6 +136,9 @@ form input[type="password"]:focus-visible {
     transform: scale(0.98);
 }
 
+/* ==========================================================================
+   5. ALGORITHM RADIO BUTTON CONTROLS
+   ========================================================================== */
 .radio-group {
     border: none;
 }
@@ -131,6 +151,7 @@ form input[type="password"]:focus-visible {
 }
 
 .radio_btn {
+    /* Strip native browser radio styling to apply soft shadows */
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -157,6 +178,9 @@ form input[type="password"]:focus-visible {
     font-size: 15px;
 }
 
+/* ==========================================================================
+   6. INTERACTION CONTROLS (BUTTONS)
+   ========================================================================== */
 .action-group {
     display: flex;
     justify-content: space-between;
@@ -185,6 +209,7 @@ form input[type="password"]:focus-visible {
     outline: 3px solid #626262;
 }
 
+/* Neumorphic press effect upon click activation */
 .action-group button:active:not(:disabled) {
     transform: scale(0.95);
     box-shadow: var(--press-side);
@@ -205,6 +230,10 @@ form input[type="password"]:focus-visible {
 
 }
 
+/* ==========================================================================
+7. STATUS MESSAGING & ANIMATIONS
+========================================================================== */
+
 .form-group:last-child {
     overflow: hidden;
 }
@@ -218,11 +247,12 @@ form input[type="password"]:focus-visible {
     padding: 10px 5px;
     border-radius: 15px;
     opacity: 1;
-
+    /* Out-of-bounds start state for the slide-in notification pipeline */
     transform: translateX(-380px);
     transition: transform 1s cubic-bezier(0.86, 0, 0.14, 1);
 }
 
+/* Hooked directly via Javascript runtime transitions */
 .status-group.show {
     opacity: 1;
     transform: translateX(0px);
