@@ -36,7 +36,7 @@ async function handleEncrypt() {
             textOut.value = encrypt_func(textValue, keyValue, algo);
             copyBtn.disabled = false; // Encryption Trigger
             showMessage({
-                text: "Successful encryption!",
+                text: "Successful encryption",
                 type: "success"
             });
         } catch (e) {
@@ -59,7 +59,7 @@ async function handleEncrypt() {
             copyBtn.disabled = false; // Encryption Trigger
 
             showMessage({
-                text: "Successful encryption!",
+                text: "Successful encryption",
                 type: "success"
             });
         } catch (e) {
@@ -86,7 +86,7 @@ async function handleDecrypt() {
             const algo = (selectedAlgo === "Chacha" ? Algorithms.Chacha : Algorithms.Aes);
             textOut.value = decrypt_func(textValue, keyValue, algo);
             showMessage({
-                text: "Successful decryption!",
+                text: "Successful decryption",
                 type: "success"
             });
         } catch (e) {
@@ -108,7 +108,7 @@ async function handleDecrypt() {
             });
 
             showMessage({
-                text: "Successful decryption!",
+                text: "Successful decryption",
                 type: "success"
             });
         } catch (e) {
@@ -189,7 +189,7 @@ copyBtn.addEventListener('click', async () => {
     try {
         await navigator.clipboard.writeText(textToCopy);
         showMessage({
-            text: "Copied to clipboard successfully!",
+            text: "Result copied to clipboard",
             type: "normal"
         });
     } catch (e) {

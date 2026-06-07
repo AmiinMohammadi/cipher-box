@@ -10,7 +10,6 @@
     font-family: "InconsolataziBold";
     src: local("InconsolataziBold"), url("fonts/InconsolataziBold.otf") format("opentype");
 }
-
 /* ==========================================================================
    2. GLOBAL RESET & DESIGN SYSTEM VARIABLES
    ========================================================================== */
@@ -49,9 +48,10 @@ body {
     overflow: hidden;
 }
 
+
 .app-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     padding: 20px;
 }
 
@@ -71,9 +71,11 @@ body,
 button,
 label,
 img,
-h1 {
+h1,
+input[type="radio"]{
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ==========================================================================
@@ -123,7 +125,9 @@ form input[type="password"] {
     user-select: text;
     transition: all 0.2s;
 }
-
+form textarea{
+    height: 7.5em;
+}
 form input[type="password"] {
     border-radius: 10px;
 }
@@ -272,7 +276,13 @@ form input[type="password"]:focus-visible {
 }
 
 .status-group p code {
+
     font-size: 14px;
     color: var(--text-dark);
     font-family: 'Inconsolatazi', monospace;
+}
+@media screen and (max-width: 480px) {
+    form textarea{
+        height: 3.5em !important;
+    }
 }
