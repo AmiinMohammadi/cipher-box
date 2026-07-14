@@ -6,7 +6,7 @@ A cross-platform text encryption tool built with **Rust**, **Tauri**, and **WebA
 
 ## 🚀 Live link
 
-[Launch Cipher Box Live](https://taha-26.github.io/cipher-box/src)
+[Launch Cipher Box Live](https://amiinmohammadi.github.io/cipher-box/src)
 
 ---
 
