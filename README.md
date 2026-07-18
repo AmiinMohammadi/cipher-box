@@ -1,3 +1,7 @@
+<img src="src/assets/banner.png">
+
+---
+
 # 🔐 Cipher Box
 
 A cross-platform text encryption tool built with **Rust**, **Tauri**, and **WebAssembly (WASM)**. Cipher Box features a Neumorphic (Soft UI) design and seamlessly runs on both desktop and web environments using a single shared codebase.
